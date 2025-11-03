@@ -1,44 +1,47 @@
 import React from 'react';
-import { Bot, Play, LayoutDashboard, LogIn } from 'lucide-react';
+import { Rocket, Star, User, Settings } from 'lucide-react';
 
-export default function Navbar({ currentView, onNavigate }) {
+export default function Navbar({ onGetStarted }) {
   return (
-    <header className="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/70 border-b border-black/5">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-        <button
-          onClick={() => onNavigate('home')}
-          className="flex items-center gap-2 font-semibold text-slate-900 hover:opacity-80 transition"
-        >
-          <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-tr from-violet-500 via-sky-500 to-amber-400 text-white">
-            <Bot size={18} />
-          </span>
-          <span>Vibe AI Presenter</span>
-        </button>
-
-        <nav className="hidden md:flex items-center gap-6 text-sm">
-          <button
-            onClick={() => onNavigate('home')}
-            className={`inline-flex items-center gap-2 hover:text-slate-900 transition ${currentView === 'home' ? 'text-slate-900' : 'text-slate-600'}`}
-          >
-            <Play size={16} /> Home
-          </button>
-          <button
-            onClick={() => onNavigate('dashboard')}
-            className={`inline-flex items-center gap-2 hover:text-slate-900 transition ${currentView === 'dashboard' ? 'text-slate-900' : 'text-slate-600'}`}
-          >
-            <LayoutDashboard size={16} /> Dashboard
-          </button>
-        </nav>
-
+    <header className="relative w-full">
+      <nav className="mx-auto mt-4 w-[95%] md:w-[90%] flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-4 md:px-6 py-3 shadow-[0_0_60px_-20px_rgba(168,85,247,0.6)]">
         <div className="flex items-center gap-3">
+          <div className="h-9 w-9 rounded-xl bg-gradient-to-br from-fuchsia-500 via-violet-500 to-blue-500 p-[2px]">
+            <div className="h-full w-full rounded-[10px] bg-black flex items-center justify-center">
+              <Rocket className="h-4 w-4 text-fuchsia-400" />
+            </div>
+          </div>
+          <span className="text-sm md:text-base font-semibold tracking-wide bg-gradient-to-r from-fuchsia-300 via-violet-200 to-blue-200 text-transparent bg-clip-text">
+            AstroVision
+          </span>
+        </div>
+
+        <div className="hidden md:flex items-center gap-6 text-sm text-white/80">
+          <a href="#features" className="hover:text-white transition-colors">Features</a>
+          <a href="#showcase" className="hover:text-white transition-colors">Showcase</a>
+          <a href="#about" className="hover:text-white transition-colors">About</a>
+        </div>
+
+        <div className="flex items-center gap-2 md:gap-3">
           <button
-            onClick={() => onNavigate('signup')}
-            className="inline-flex items-center gap-2 rounded-lg border border-slate-200 bg-white px-3.5 py-2 text-sm font-medium text-slate-900 shadow-sm hover:shadow transition"
+            className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs md:text-sm text-white/90 hover:bg-white/10 transition-colors"
+            aria-label="Account"
           >
-            <LogIn size={16} /> Sign up / Login
+            <User className="h-4 w-4" />
+            <span className="hidden md:inline">Sign in</span>
+          </button>
+          <button
+            onClick={onGetStarted}
+            className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-fuchsia-500 via-violet-500 to-blue-500 px-3 md:px-4 py-2 text-xs md:text-sm font-medium text-white shadow-lg shadow-fuchsia-500/30 hover:shadow-violet-500/40 active:scale-[0.98] transition"
+          >
+            <Star className="h-4 w-4" />
+            <span className="hidden md:inline">Get Started</span>
           </button>
         </div>
-      </div>
+      </nav>
+
+      {/* Glow underline */}
+      <div className="pointer-events-none absolute inset-x-0 top-[88px] mx-auto h-px w-[90%] bg-gradient-to-r from-transparent via-fuchsia-500/40 to-transparent" />
     </header>
   );
 }
